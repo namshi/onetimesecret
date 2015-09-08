@@ -46,7 +46,11 @@ if Otto.env?(:dev)
 else
   # PROD: run barebones webapps
   apps.each_pair do |path,app|
-    map(path) { run app }
+    map(path) {
+      app.option[:public] = PUBLIC_DIR
+      app.add_static_path '/favicon.ico'
+      run app
+    }
   end
   #$SAFE = 1  # http://www.rubycentral.com/pickaxe/taint.html
 end
