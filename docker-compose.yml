@@ -3,7 +3,7 @@ web:
   ports:
    - "7143:8080"
   environment:
-    RACK_ENV: prod
+    RACK_ENV: dev
     REDIS_HOST: redis
     REDIS_PORT: 6379
     SSL_ENABLED:
