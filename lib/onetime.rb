@@ -14,6 +14,7 @@ require 'gibbler'
 require 'familia'
 require 'storable'
 require 'thirdparty/sendgrid'
+require 'thirdparty/ses'
 
 SYSLOG = Syslog.open('onetime') unless defined?(SYSLOG)
 Familia.apiversion = nil
@@ -325,5 +326,3 @@ OT = Onetime
 require 'onetime/models'
 require 'onetime/logic'
 require 'onetime/email'
-
-

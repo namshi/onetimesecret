@@ -46,6 +46,9 @@ module Onetime
       if @mode == :sendgrid
         emailer_opts = OT.conf[:emailer].values_at :account, :password, :from, :fromname, :bcc
         @emailer = SendGrid.new *emailer_opts
+      elsif @mode == :ses
+        emailer_opts = OT.conf[:emailer].values_at :aws_access_key, :aws_access_secret, :region, :from
+        @emailer = Ses.new *emailer_opts
       else
         @emailer = OT::SMTP.new OT.conf[:emailer][:from]
       end

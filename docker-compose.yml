@@ -1,0 +1,22 @@
+web:
+  build: .
+  ports:
+   - "7143:8080"
+  environment:
+    RACK_ENV: dev
+    REDIS_HOST: redis
+    REDIS_PORT: 6379
+    SSL_ENABLED:
+    ONETIME_DOMAIN:
+    ONETIME_EMAIL_MODE:
+    ONETIME_EMAIL_ADDRESS:
+    AWS_ACCESS_KEY:
+    AWS_ACCESS_SECRET:
+    REGION:
+    VIRTUAL_HOST: ots.namdv.net
+  links:
+   - redis
+redis:
+  image: redis:latest
+  ports:
+    - "6379:6379"
