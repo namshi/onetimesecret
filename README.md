@@ -1,16 +1,16 @@
-# ONE-TIME SECRET - v0.9.1 (2015-04-23)
+# ONE-TIME SECRET - v0.10.0 (2017-04-27)
 
 *Keep sensitive info out of your email & chat logs.*
 
 ## What is a One-Time Secret? ##
 
-A one-time secret is a link that can be viewed only one time. A single-use URL.
+A one-time secret is a link that can be viewed only one time. A single-use URI.
+
+<a class="msg" href="https://onetimesecret.com/">Send a secret today!</a>
 
 ## Why would I want to use it? ##
 
 When you send people sensitive info like passwords and private links via email or chat, there are copies of that information stored in many places. If you use a one-time link instead, the information persists for a single viewing which means it can't be read by someone else later. This allows you to send sensitive information in a safe way knowing it's seen by one person only. Think of it like a self-destructing message.
-
-<a class="msg" href="https://onetimesecret.com/">Try it out!</a>
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ When you send people sensitive info like passwords and private links via email o
     # DEBIAN
     $ sudo apt-get update
     $ sudo apt-get install build-essential
-    $ sudo apt-get install ntp libyaml-dev libevent-dev zlib1g zlib1g-dev openssl libssl-dev libxml2 libreadline5-dev
+    $ sudo apt-get install ntp libyaml-dev libevent-dev zlib1g zlib1g-dev openssl libssl-dev libxml2 libreadline-gplv2-dev
     $ mkdir ~/sources
 
     # CENTOS
@@ -66,7 +66,9 @@ When you send people sensitive info like passwords and private links via email o
     $ bin/ots init
     $ sudo mkdir /var/log/onetime /var/run/onetime /var/lib/onetime
     $ sudo chown ots /var/log/onetime /var/run/onetime /var/lib/onetime
-    $ cp etc/* /etc/onetime/
+    $ mkdir /etc/onetime
+    $ cp -R etc/* /etc/onetime/
+    $ [secure the /etc/onetime and /var/lib/onetime directory to prevent unauthorized access]
     $ [edit settings in /etc/onetime/config]
     $ [edit settings in /etc/onetime/redis.conf]
 
@@ -80,21 +82,3 @@ We include a global secret in the encryption key so it needs to be long and secu
 
     dd if=/dev/urandom bs=20 count=1 | openssl sha1
 
-
-## Upgradng to 0.9
-
-Upgrading to 0.9 should be seemless, however b/c of new functionality you will need to add the following to your config file:
-
-    :incoming:
-      :enabled: true
-      :email: example@onetimesecret.com
-      :passphrase: CHANGEME
-      :regex: \A[a-zA-Z0-9]{6}\z
-    :locales:
-      - en
-      - es
-
-You run your configuration from `/etc/onetime/config` you will also need to copy the `./etc/locale` directory to `/etc/onetime/locale`:
-
-    $ cd /path/2/onetimesecret
-    $ sudo cp -r etc/locale /etc/onetime/
