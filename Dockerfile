@@ -1,4 +1,4 @@
-FROM ruby:1.9
+FROM ruby:2.0
 
 ENV RACK_ENV dev
 

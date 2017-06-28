@@ -1,6 +1,6 @@
 ots:
-    notify:
-        - github
-        - emailSes
-    registry: namshi.net
-    revfile: public/web
+  notify:
+    - github
+    - emailSes
+  registry: namshi.net
+  revfile: public/web
